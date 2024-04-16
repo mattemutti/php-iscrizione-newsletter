@@ -14,16 +14,23 @@ if (isset($_GET['email'])) {
 	//se presente allora leggi la variabile
 	var_dump($email);
 
+	// richiamo il file dove troviamo le funzioni
+	include __DIR__ . '/functions.php';
 
-	// invochiamo la funzione dentro alla variabile $message che faremo vedere il suo return in pagina html
+	// invochiamo la funzione dentro alla variabile $message e faremo vedere il suo return in pagina html
 	// e passiamo il valore della variabile $mail
 	$message = checkEmail($email);
 
 }
+
+
+
+
 /**
  * Funzione che controlla la sintassi della mail inserita dall'utente
  * 
  */
+/*
 function checkEmail($email)
 {
 	if (str_contains($email, '@') && str_contains($email, '.')) {
@@ -37,7 +44,7 @@ function checkEmail($email)
 			'text' => 'Email errata',
 		];
 	}
-}
+}*/
 
 
 ?>
