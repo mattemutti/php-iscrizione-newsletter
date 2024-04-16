@@ -1,50 +1,35 @@
 <?php
 
 // stampo in pagina l'array della mail letta dall'input tramite get dopo aver premito il bottone
-var_dump($_GET);
+//var_dump($_GET);
 // valore booleano se la mail è presente nell'array
-var_dump(isset($_GET['email']));
+//var_dump(isset($_GET['email']));
 
 // salvo la mail in una variabile
-$email = $_GET['email'];
+// $email = $_GET['email'];
+
+// // richiamo il file dove troviamo le funzioni
+// include __DIR__ . '/functions.php';
+
+// // condizione che controlla se la mail è presente
+// if (isset($_GET['email'])) {
+// 	//se presente allora leggi la variabile
+// // var_dump($email);
+
+// 	// invochiamo la funzione dentro alla variabile $message e faremo vedere il suo return in pagina html
+// // e passiamo il valore della variabile $mail
+// 	$message = checkEmail($email);
+// }
 
 
-// condizione che controlla se la mail è presente
-if (isset($_GET['email'])) {
-	//se presente allora leggi la variabile
-	var_dump($email);
 
-	// richiamo il file dove troviamo le funzioni
-	include __DIR__ . '/functions.php';
+session_start();
 
-	// invochiamo la funzione dentro alla variabile $message e faremo vedere il suo return in pagina html
-	// e passiamo il valore della variabile $mail
-	$message = checkEmail($email);
+//var_dump($_SESSION);
 
+if (isset($_SESSION['message'])) {
+	$message = $_SESSION['message'];
 }
-
-
-
-
-/**
- * Funzione che controlla la sintassi della mail inserita dall'utente
- * 
- */
-/*
-function checkEmail($email)
-{
-	if (str_contains($email, '@') && str_contains($email, '.')) {
-		return [
-			'status' => 'alert-success text-success',
-			'text' => 'Ti sei sicritto',
-		];
-	} else {
-		return [
-			'status' => 'alert-danger text-danger',
-			'text' => 'Email errata',
-		];
-	}
-}*/
 
 
 ?>
@@ -84,7 +69,7 @@ function checkEmail($email)
 								<a class="nav-link disabled text-white" aria-disabled="true">Disabled</a>
 							</li>
 						</ul>
-						<form class="d-flex" role="search">
+						<form action="server.php" class="d-flex" role="search">
 							<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 							<button class="btn btn-light" type="submit">Search</button>
 						</form>
@@ -102,7 +87,7 @@ function checkEmail($email)
 			<div class="container">
 				<div class="row justify-content-center align-content-center text-center">
 					<div class="col-4">
-						<form action="" method="get">
+						<form action="server.php" method="get">
 							<div class="mb-3">
 								<label for="" class="form-label text-dark">Newsletter</label>
 								<input type="text" class="form-control bg-dark text-white" name="email" id="email"
@@ -116,17 +101,7 @@ function checkEmail($email)
 			</div>
 		</section>
 
-		<!-- Se nella variabile $message è presente qualcosa stampiamo ilsuo contenuto-->
-		<?php if (isset($message)): ?>
-			<div class="container">
-				<div class="row justify-content-center align-content-center text-center">
-					<div class="col-6 ">
-						<div class="alert <?= $message['status'] ?>" role="alert">
-							<strong><?= $message['text'] ?></strong>
-						</div>
-					</div>
-				</div>
-			<?php endif; ?>
+
 
 	</main>
 
