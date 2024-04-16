@@ -13,22 +13,33 @@ $email = $_GET['email'];
 if (isset($_GET['email'])) {
 	//se presente allora leggi la variabile
 	var_dump($email);
-	//controllare se all'interno della mail abbiamo '@' e '.'
-	if (str_contains($email, '@') && str_contains($email, '.')) {
-		$message = 'ok';
-	} else {
-		$message = 'Fail';
-	}
 
+	/*
+			 //controllare se all'interno della mail abbiamo '@' e '.'
+			 if (str_contains($email, '@') && str_contains($email, '.')) {
+				 $message = 'ok';
+			 } else {
+				 $message = 'Fail';
+			 }
+			  */
 
-
-
-
-
+	// invochiamo la funzione dentro alla variabile $message che faremo vedere il suo return in pagina html
+	// e passiamo il valore della variabile $mail
+	$message = checkEmail($email);
 
 }
-
-
+/**
+ * Funzione che controlla la sintassi della mail inserita dall'utente
+ * 
+ */
+function checkEmail($email)
+{
+	if (str_contains($email, '@') && str_contains($email, '.')) {
+		return 'Ok, ti sei sicritto';
+	} else {
+		return 'Email non valida';
+	}
+}
 
 
 ?>
